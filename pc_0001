@@ -1,0 +1,49 @@
+# Boxstarter script version 0001
+
+# Allow reboots
+$Boxstarter.RebootOk=$true
+$Boxstarter.NoPassword=$false
+$Boxstarter.AutoLogin=$true
+
+# Basic setup
+Update-ExecutionPolicy Unrestricted
+Set-ExplorerOptions -showHidenFilesFoldersDrives -showProtectedOSFiles -showFileExtensions
+Enable-RemoteDesktop
+Disable-InternetExplorerESC
+Disable-UAC
+Set-TaskbarSmall
+
+if (Test-PendingReboot) { Invoke-Reboot }
+
+# Update Windows and reboot if necessary
+Install-WindowsUpdate -AcceptEula
+if (Test-PendingReboot) { Invoke-Reboot }
+
+cinstm DotNet3.5 # Not automatically installed with VS 2013. Includes .NET 2.0. Uses Windows Features to install.
+if (Test-PendingReboot) { Invoke-Reboot }
+
+#Browsers
+cinstm googlechrome
+cinstm firefox
+
+#Other essential tools
+cinstm 7zip
+cinstm adobereader
+cinstm javaruntime
+cinstm silverlight
+cinstm dotnet4.5
+cinstm flashplayerplugin
+cinstm vlc
+cinstm filezilla
+cinstm windirstat
+cinstm AdobeAIR
+
+# Setup Taskbar items
+Install-ChocolateyPinnedTaskBarItem "$($Boxstarter.programFiles86)\Google\Chrome\Application\chrome.exe"
+
+# Setup Desktop items
+Install-ChocolateyDesktopLink 'C:\tools\NHibernateProfiler\nhprof.exe'
+
+
+
+
