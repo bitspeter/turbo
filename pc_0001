@@ -22,11 +22,11 @@ if (Test-PendingReboot) { Invoke-Reboot }
 cinstm DotNet3.5 # Not automatically installed with VS 2013. Includes .NET 2.0. Uses Windows Features to install.
 if (Test-PendingReboot) { Invoke-Reboot }
 
-#Browsers
+# Browsers
 cinstm googlechrome
 cinstm firefox
 
-#Other essential tools
+# Other essential tools
 cinstm 7zip
 cinstm adobereader
 cinstm javaruntime
@@ -37,6 +37,26 @@ cinstm vlc
 cinstm filezilla
 cinstm windirstat
 cinstm AdobeAIR
+
+# bits tools
+cinstm notepadplusplus.install
+cinstm sysinternals
+cinstm keepass.install
+cinstm ruby
+cinstm powershell
+cinstm putty
+cinstm conemu
+cinstm python
+cinstm curl
+cinstm wireshark
+cinstm lessmsi
+cinstm procexp
+cinstm winscp
+cinstm mysql.workbench
+cinstm baretail
+cinstm winpcap
+cinstm winmerge
+cinstm nmap
 
 # Setup Taskbar items
 Install-ChocolateyPinnedTaskBarItem "$($Boxstarter.programFiles86)\Google\Chrome\Application\chrome.exe"
